@@ -8,4 +8,6 @@ export AWS_BUCKET=arn:aws:s3:::tungnd-project3
 export AWS_REGION=us-east-1
 export AWS_PROFILE=default
 export JWT_SECRET=testing
+export DOCKER_PASSWORD=BlackGoofy,./123
+export DOCKER_USERNAME=tungnguyenls
 export URL=http://localhost:8100
