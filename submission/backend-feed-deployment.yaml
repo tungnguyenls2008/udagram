@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: backend-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend-feed
@@ -18,17 +18,17 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: POSTGRESS_USERNAME
+            - name: POSTGRES_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: env-secret
-                  key: POSTGRESS_USERNAME
-            - name: POSTGRESS_PASSWORD
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: env-secret
-                  key: POSTGRESS_PASSWORD
-            - name: POSTGRESS_DB
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
                   name: env-secret
