@@ -15,7 +15,7 @@ spec:
         service: backend-feed
     spec:
       containers:
-        - image: tungnguyenls/udagram-api-feed
+        - image: tungnguyenls/udagram-api-feed:latest
           name: backend-feed
           imagePullPolicy: Always
           resources:
@@ -73,7 +73,7 @@ spec:
                   key: POSTGRES_USERNAME
           volumeMounts:
             - name: aws-secret
-              mountPath: "/root/.aws/"
+              mountPath: "~/.aws/"
               readOnly: true
       restartPolicy: Always
       volumes:
