@@ -31,7 +31,7 @@ jobs:
 
     - stage: Build and Push
       script:
-        - docker build -t reverseproxy ./reverseproxy
+        - docker build -t reverseproxy ./udagram-reverseproxy
         - docker tag reverseproxy $DOCKER_USERNAME/reverseproxy:v1
         - docker push $DOCKER_USERNAME/reverseproxy:v1
       if: branch = master
