@@ -10,11 +10,11 @@ export const sequelize = new Sequelize({
   //'host': 'cdr.cyapw1mcmmdj.us-east-1.rds.amazonaws.com',
 
   'dialect': config.dialect,
-  // 'dialectOptions': {
-  //   'ssl': {
-  //     'require': true, // This will help. But you will see new error
-  //     'rejectUnauthorized': false // This line will fix new error
-  //   }
-  // },
+  'dialectOptions': {
+    'ssl': {
+      'require': false, // This will help. But you will see new error
+      'rejectUnauthorized': false // This line will fix new error
+    }
+  },
   'storage': ':memory:',
 });
