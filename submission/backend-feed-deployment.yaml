@@ -25,8 +25,8 @@ spec:
             limits:
               memory: "200Mi"
               cpu: "500m"
-          command: [ "stress" ]
-          args: [ "--vm", "1", "--vm-bytes", "200M", "--vm-hang", "1" ]
+#          command: [ "stress" ]
+#          args: [ "--vm", "1", "--vm-bytes", "200M", "--vm-hang", "1" ]
           env:
             - name: URL
               valueFrom:
@@ -81,4 +81,4 @@ spec:
       volumes:
         - name: aws-secret
           secret:
-            secretName: aws-secret
+            secretName: mysecret
