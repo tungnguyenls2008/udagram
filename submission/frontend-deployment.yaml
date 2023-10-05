@@ -22,5 +22,5 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: env-configmap
+                name: env-config
       restartPolicy: Always
