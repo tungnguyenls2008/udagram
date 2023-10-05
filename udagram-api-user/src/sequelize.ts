@@ -9,11 +9,5 @@ export const sequelize = new Sequelize({
   'host': config.host,
 
   'dialect': config.dialect,
-  'dialectOptions': {
-    'ssl': {
-      'require': false, // This will help you. But you will see nwe error
-      'rejectUnauthorized': false // This line will fix new error
-    }
-  },
   'storage': ':memory:',
 });

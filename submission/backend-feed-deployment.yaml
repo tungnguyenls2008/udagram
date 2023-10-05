@@ -2,31 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: backend-feed
+    app: backend-feed
   name: backend-feed
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: backend-feed
+      app: backend-feed
   template:
     metadata:
       labels:
-        service: backend-feed
+        app: backend-feed
     spec:
       containers:
         - image: tungnguyenls/udagram-api-feed
           name: backend-feed
           imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "250m"
-            limits:
-              memory: "200Mi"
-              cpu: "500m"
-#          command: [ "stress" ]
-#          args: [ "--vm", "1", "--vm-bytes", "200M", "--vm-hang", "1" ]
+          ports:
+            - containerPort: 8080
           env:
             - name: URL
               valueFrom:
@@ -77,6 +70,13 @@ spec:
             - name: aws-secret
               mountPath: "/root/.aws/"
               readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1500Mi
       restartPolicy: Always
       volumes:
         - name: aws-secret

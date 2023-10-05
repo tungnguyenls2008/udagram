@@ -2,31 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: backend-user
+    app: backend-user
   name: backend-user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: backend-user
+      app: backend-user
   template:
     metadata:
       labels:
-        service: backend-user
+        app: backend-user
     spec:
       containers:
         - image: tungnguyenls/udagram-api-user
           name: backend-user
           imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "250m"
-            limits:
-              memory: "200Mi"
-              cpu: "500m"
-#          command: [ "stress" ]
-#          args: [ "--vm", "1", "--vm-bytes", "200M", "--vm-hang", "1" ]
           env:
             - name: URL
               valueFrom:
@@ -58,4 +49,34 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: POSTGRES_USERNAME
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_REGION
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_PROFILE
+            - name: AWS_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_BUCKET
+          volumeMounts:
+            - mountPath: "/root/.aws"
+              name: aws-secret
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1500Mi
       restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: mysecret

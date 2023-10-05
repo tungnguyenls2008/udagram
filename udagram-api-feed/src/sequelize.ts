@@ -7,14 +7,7 @@ export const sequelize = new Sequelize({
   'password': config.password,
   'database': config.database,
   'host': config.host,
-  //'host': 'cdr.cyapw1mcmmdj.us-east-1.rds.amazonaws.com',
 
   'dialect': config.dialect,
-  'dialectOptions': {
-    'ssl': {
-      'require': false, // This will help. But you will see new error
-      'rejectUnauthorized': false // This line will fix new error
-    }
-  },
   'storage': ':memory:',
 });

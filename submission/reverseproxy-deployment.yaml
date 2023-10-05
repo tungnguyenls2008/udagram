@@ -2,15 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reverseproxy
+  labels:
+    app: reverseproxy
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      run: reverseproxy
-  replicas: 1
+      app: reverseproxy
   template:
     metadata:
       labels:
-        run: reverseproxy
+        app: reverseproxy
     spec:
       containers:
         - name: reverseproxy
@@ -18,7 +20,10 @@ spec:
           ports:
             - containerPort: 80
           resources:
-            limits:
-              cpu: 1000m
             requests:
-              cpu: 500m
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          imagePullPolicy: Always
